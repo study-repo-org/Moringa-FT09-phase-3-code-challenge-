@@ -22,13 +22,13 @@ class TestModels(unittest.TestCase):
         self.assertEqual(magazine.name, "Tech Weekly")
 
     def test_create_author(self):
-        author = Author(None, "Jane Smith")
+        author = Author(None, "John Doe")
         author.create_author(self.cursor)
-        self.cursor.execute.assert_called_once_with("INSERT INTO authors (name) VALUES (?)", ("Jane Smith",))
+        self.cursor.execute.assert_called_once_with("INSERT INTO authors (name) VALUES (?)", ("John Doe",))
 
     def test_get_all_authors(self):
         # Mocking database response
-        self.cursor.fetchall.return_value = [(1, "John Doe"), (2, "Jane Smith")]
+        self.cursor.fetchall.return_value = [(1, "John Doe"), (2, "John Doe")]
         authors = Author.get_all_authors(self.cursor)
         # Checking if execute method was called with correct argument
         self.cursor.execute.assert_called_once_with("SELECT * FROM authors")
@@ -37,7 +37,7 @@ class TestModels(unittest.TestCase):
         self.assertEqual(authors[0].id, 1)
         self.assertEqual(authors[0].name, "John Doe")
         self.assertEqual(authors[1].id, 2)
-        self.assertEqual(authors[1].name, "Jane Smith")
+        self.assertEqual(authors[1].name, "John Doe")
 
     def test_articles(self):
         # Mocking database response

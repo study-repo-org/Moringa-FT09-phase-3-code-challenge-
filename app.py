@@ -109,7 +109,6 @@ def get_magazine_contributing_authors(cursor):
 
 
 
-
     #Article  
 def create_article(cursor):
     title = input("Enter article title: ")
@@ -172,24 +171,24 @@ def main():
 
 
     while True:
-        print("\nMenu:")
-        print("1. Create Author")
-        print("2. Display All Authors")
-        print("3. Display Author Articles")
-        print("4. Display Author Magazines")
-        print("5. Create Magazine")
-        print("6. Display All Magazines")
-        print("7. Display Magazine Articles")
-        print("8. Display Magazine Contributors")
-        print("9. Display Magazine Article Titles")
-        print("10. Display Magazine Contributing Authors")
-        print("11. Create Author")
+        print("\nChoose:")
+        print("1.  Create Author")
+        print("2.  Create Magazine")
+        print("3.  Create Article")
+        print("4.  get All Authors")
+        print("5.  get Author Articles")
+        print("6.  get Author Magazines")
+        print("7.  get All Magazines")
+        print("8.  get Magazine Articles")
+        print("9.  get Magazine Contributors")
+        print("11. get Magazine Article Titles")
+        print("11. get Magazine Contributing Authors")
         print("12. Get Article title")
         print("13. Get the name of the author of an article")
         print("14. Get the magazine of an article")
         print("15. Exit")
 
-        choice = input("Enter your choice: ")
+        choice = input("Enter A Number: ")
 
         if choice == "1":
             conn = get_db_connection()
@@ -200,61 +199,60 @@ def main():
         elif choice == "2":
             conn = get_db_connection()
             cursor = conn.cursor()
-            get_all_authors(cursor)
+            create_magazine(cursor)
+            conn.commit()
             conn.close()
         elif choice == "3":
             conn = get_db_connection()
             cursor = conn.cursor()
-            get_author_articles(cursor)
+            create_article(cursor)
+            conn.commit()
             conn.close()
         elif choice == "4":
             conn = get_db_connection()
             cursor = conn.cursor()
-            get_author_magazines(cursor)
+            get_all_authors(cursor)
             conn.close()
         elif choice == "5":
             conn = get_db_connection()
             cursor = conn.cursor()
-            create_magazine(cursor)
-            conn.commit()
+            get_author_articles(cursor)
             conn.close()
         elif choice == "6":
             conn = get_db_connection()
             cursor = conn.cursor()
-            get_all_magazines(cursor)
+            get_author_magazines(cursor)
             conn.close()
         elif choice == "7":
             conn = get_db_connection()
             cursor = conn.cursor()
-            get_magazine_articles(cursor)
+            get_all_magazines(cursor)
             conn.close()
         elif choice == "8":
             conn = get_db_connection()
             cursor = conn.cursor()
-            get_magazine_contributors(cursor)
+            get_magazine_articles(cursor)
             conn.close()
         elif choice == "9":
             conn = get_db_connection()
             cursor = conn.cursor()
-            get_magazine_article_titles(cursor)
+            get_magazine_contributors(cursor)
             conn.close()
         elif choice == "10":
             conn = get_db_connection()
             cursor = conn.cursor()
-            get_magazine_contributing_authors(cursor)
+            get_magazine_article_titles(cursor)
             conn.close()
         elif choice == "11":
             conn = get_db_connection()
             cursor = conn.cursor()
-            create_article(cursor)
-            conn.commit()
+            get_magazine_contributing_authors(cursor)
             conn.close()
         elif choice == "12":
             conn = get_db_connection()
             cursor = conn.cursor()
             get_article_title(cursor)
             conn.close()
-
         elif choice == "13":
             conn = get_db_connection()
             cursor = conn.cursor()
@@ -269,7 +267,8 @@ def main():
             print("Exiting")
             break
         else:
-            print("Invalid choice. Please enter a valid option.")
+            print("Invalid option. Please enter a valid option.")
+
 
 if __name__ == "__main__":
     main()
